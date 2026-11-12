@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huabang Zhang Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* palette: cool lab-bench paper, graphite ink, probe blue for links and actions, rail amber only for voltages */
+  --paper:#F2F4F3;
+  --surface:#FFFFFF;
+  --ink:#16202A;
+  --muted:#566170;
+  --rule:#D3D9DD;
+  --probe:#2450E0;
+  --rail:#F0B429;
+  --rail-ink:#2E2200;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* layout: left-aligned single column; hero = name + the power tree of the current robot; projects read like datasheets (story left, measurements right) */
+  --gutter:clamp(16px,4vw,48px);
+  --max:1160px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1419;--surface:#161D24;--ink:#E4E9EE;--muted:#97A3B0;--rule:#2A343F;
+    --probe:#86A4FF;--rail:#F2C14E;--rail-ink:#231A00;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1419;--surface:#161D24;--ink:#E4E9EE;--muted:#97A3B0;--rule:#2A343F;
+  --probe:#86A4FF;--rail:#F2C14E;--rail-ink:#231A00;color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--probe);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--probe);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.bar strong{font-family:var(--display);font-stretch:87%;font-weight:700;font-size:18px}
+.bar nav{display:flex;gap:20px;flex-wrap:wrap}
+.bar nav a{color:var(--muted);text-decoration:none;font-size:15px}
+.bar nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,5vw,72px);align-items:center;padding-top:clamp(40px,7vw,88px);padding-bottom:clamp(40px,6vw,72px)}
+.hero h1{font-size:clamp(52px,9vw,112px);font-stretch:68%;font-weight:800;letter-spacing:-.01em;line-height:.92}
+.hero h1 span{display:block;font-stretch:100%;font-weight:500;font-size:.32em;letter-spacing:0;color:var(--muted);margin-top:14px}
+.lede{font-size:clamp(18px,2vw,21px);max-width:34ch;margin-top:24px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:28px 0 0;font-size:15px}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:11px 18px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--probe)}
+.btn.primary{background:var(--probe);color:var(--paper)}
+.btn.ghost{color:var(--probe)}
+
+.tree{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px 18px 14px}
+.tree svg{display:block;width:100%;height:auto}
+.tree figcaption{font-size:14px;color:var(--muted);margin-top:10px;max-width:60ch}
+.t-box{fill:var(--paper);stroke:var(--ink);stroke-width:1.4}
+.t-buck{fill:var(--surface);stroke:var(--muted);stroke-width:1.2}
+.t-wire{stroke:var(--ink);stroke-width:2;fill:none}
+.t-flow{stroke:var(--rail);stroke-width:2;fill:none;stroke-dasharray:3 13;animation:flow 1.6s linear infinite}
+.t-data{stroke:var(--probe);stroke-width:1.6;fill:none;stroke-dasharray:4 4}
+.t-label{fill:var(--ink);font-family:var(--body);font-size:13px;font-weight:600}
+.t-sub{fill:var(--muted);font-family:var(--body);font-size:11.5px}
+.t-small{fill:var(--muted);font-family:var(--body);font-size:10.5px;font-weight:600}
+.t-pill{fill:var(--rail)}
+.t-volt{fill:var(--rail-ink);font-family:var(--body);font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.t-uart{fill:var(--probe);font-family:var(--body);font-size:10.5px;font-weight:600}
+@keyframes flow{to{stroke-dashoffset:-32}}
+@media (prefers-reduced-motion:reduce){.t-flow{animation:none}html{scroll-behavior:auto}}
+
+/* sections */
+section{padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(34px,5vw,54px);font-stretch:75%;font-weight:750}
+.sec-head p{color:var(--muted);max-width:60ch}
+
+/* story */
+.story{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);counter-reset:s}
+.story li{counter-increment:s;border-top:3px solid var(--ink);padding-top:16px}
+.story li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted);display:block;margin-bottom:6px}
+.story h3{font-size:24px;font-stretch:87%;font-weight:700;margin-bottom:10px}
+.story p{font-size:16px;max-width:42ch}
+
+/* projects */
+.project{padding:clamp(32px,4vw,48px) 0;border-top:1px solid var(--rule)}
+.project:first-of-type{border-top:0;padding-top:0}
+.p-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:baseline;margin-bottom:24px}
+.p-head h3{font-size:clamp(28px,3.6vw,40px);font-stretch:80%;font-weight:750}
+.p-when{color:var(--muted);font-size:15px;white-space:nowrap}
+.p-role{grid-column:1/-1;font-size:16px;color:var(--muted)}
+.p-role b{color:var(--ink);font-weight:600}
+.status{display:inline-block;margin-left:10px;vertical-align:middle;font-family:var(--body);font-size:13px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--rail);color:var(--rail-ink);letter-spacing:0}
+.p-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.p-text>p{max-width:62ch}
+.p-text h4,.p-side h4{font-family:var(--body);font-size:15px;font-weight:600;color:var(--muted);margin:22px 0 8px}
+.p-text ul{margin:0;padding-left:20px;display:grid;gap:8px;max-width:62ch}
+.p-text li::marker{color:var(--muted)}
+.bug{margin-top:22px;padding:14px 16px;border-left:3px solid var(--rail);background:var(--surface);border-radius:0 4px 4px 0;font-size:16px;max-width:62ch}
+.bug b{display:block;font-weight:600;margin-bottom:2px}
+
+.media{margin:0;aspect-ratio:16/10;border:1.5px dashed var(--rule);border-radius:6px;display:grid;place-items:center;text-align:center;padding:16px;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:24px 24px;background-color:var(--surface);background-position:-1px -1px}
+.media figcaption{background:var(--surface);padding:6px 12px;border-radius:4px;font-size:14px;color:var(--muted);max-width:30ch}
+.specs{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--rule)}
+.specs dt,.specs dd{padding:9px 0;border-bottom:1px solid var(--rule);margin:0}
+.specs dt{font-family:var(--display);font-stretch:80%;font-weight:700;font-size:22px;line-height:1.2;padding-right:18px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.specs dd{font-size:15px;color:var(--muted);align-self:center}
+.log{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.log li{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.log time,.log .when{font-weight:600;font-variant-numeric:tabular-nums}
+.log .next{color:var(--muted)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 40px;margin:0}
+.skills div{border-top:1px solid var(--ink);padding-top:12px}
+.skills dt{font-family:var(--display);font-stretch:87%;font-weight:700;font-size:19px;margin-bottom:6px}
+.skills dd{margin:0;font-size:15.5px;color:var(--muted)}
+.courses{margin-top:40px;font-size:15.5px;color:var(--muted);max-width:80ch}
+.courses b{color:var(--ink);font-weight:600}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end}
+.contact h2{font-size:clamp(40px,6vw,72px);font-stretch:70%;font-weight:800}
+.contact p{max-width:46ch}
+.contact .mail{font-size:clamp(18px,2.2vw,22px);font-weight:600;margin-top:12px;word-break:break-all}
+footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(--muted)}
+
+@media (max-width:880px){
+  .hero .wrap,.p-body,.sec-head,.contact .wrap{grid-template-columns:minmax(0,1fr)}
+  .story,.skills{grid-template-columns:minmax(0,1fr)}
+  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .skills{grid-template-columns:minmax(0,1fr)}
+  .p-head{grid-template-columns:minmax(0,1fr)}
+  .bar nav{gap:14px}
+  .log li{grid-template-columns:80px 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <strong>Huabang Zhang</strong>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#story">Why robots</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Huabang<br>Zhang<span>Robotics engineer, goes by Jay</span></h1>
+      <p class="lede">I design the power and embedded systems that make robots move. Now I'm teaching them to see.</p>
+      <dl class="facts">
+        <dt>Studying</dt><dd>B.S. Robotics Engineering, minor in Electrical Engineering, UC Santa Cruz</dd>
+        <dt>Graduating</dt><dd class="num">December 2026, GPA 3.81 / 4.0</dd>
+        <dt>Next</dt><dd>Applying to M.S. programs in robotics</dd>
+        <dt>Based in</dt><dd>San Jose, California</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn ghost" href="mailto:winbondzhang@gmail.com">Email me</a>
+      </div>
+    </div>
+
+    <figure class="tree" style="margin:0">
+      <svg viewBox="0 0 540 350" role="img" aria-labelledby="treeTitle treeDesc">
+        <title id="treeTitle">Power tree of my mobile manipulator</title>
+        <desc id="treeDesc">An 11.1 volt battery feeds the four drive motors directly, and three buck converters supply 6 volts to the arm servos, 9 volts to the Jetson Orin Nano and 7 volts to the STM32. The Jetson and STM32 talk over UART.</desc>
+
+        <!-- battery -->
+        <rect class="t-box" x="8" y="136" width="128" height="78" rx="4"/>
+        <text class="t-label" x="20" y="160">Li-ion 3S pack</text>
+        <text class="t-sub" x="20" y="179">11.1 V, 6000 mAh</text>
+        <text class="t-sub" x="20" y="196">3C discharge</text>
+
+        <!-- trunk -->
+        <path class="t-wire" d="M136 175 H168 M168 46 V298"/>
+        <path class="t-flow" d="M136 175 H168"/>
+
+        <!-- row 1: direct to motors -->
+        <path class="t-wire" d="M168 46 H336"/>
+        <path class="t-flow" d="M168 46 H336"/>
+        <rect class="t-pill" x="248" y="22" width="56" height="18" rx="9"/>
+        <text class="t-volt" x="276" y="35" text-anchor="middle">11.1 V</text>
+        <text class="t-small" x="186" y="64">direct</text>
+        <rect class="t-box" x="336" y="20" width="196" height="52" rx="4"/>
+        <text class="t-label" x="348" y="42">4 × drive motors</text>
+        <text class="t-sub" x="348" y="60">JGB37-520, Hall encoders</text>
+
+        <!-- row 2: 6 V servos -->
+        <path class="t-wire" d="M168 130 H196 M250 130 H336"/>
+        <path class="t-flow" d="M168 130 H196 M250 130 H336"/>
+        <rect class="t-buck" x="196" y="116" width="54" height="28" rx="3"/>
+        <text class="t-small" x="223" y="134" text-anchor="middle">buck</text>
+        <rect class="t-pill" x="266" y="106" width="48" height="18" rx="9"/>
+        <text class="t-volt" x="290" y="119" text-anchor="middle">6.0 V</text>
+        <rect class="t-box" x="336" y="104" width="196" height="52" rx="4"/>
+        <text class="t-label" x="348" y="126">Arm servos</text>
+        <text class="t-sub" x="348" y="144">5 × HX-12H, HTS-21H gripper</text>
+
+        <!-- row 3: 9 V Jetson -->
+        <path class="t-wire" d="M168 214 H196 M250 214 H336"/>
+        <path class="t-flow" d="M168 214 H196 M250 214 H336"/>
+        <rect class="t-buck" x="196" y="200" width="54" height="28" rx="3"/>
+        <text class="t-small" x="223" y="218" text-anchor="middle">buck</text>
+        <rect class="t-pill" x="266" y="190" width="48" height="18" rx="9"/>
+        <text class="t-volt" x="290" y="203" text-anchor="middle">9.0 V</text>
+        <rect class="t-box" x="336" y="188" width="196" height="52" rx="4"/>
+        <text class="t-label" x="348" y="210">Jetson Orin Nano</text>
+        <text class="t-sub" x="348" y="228">ROS 2, vision, sensors</text>
+
+        <!-- row 4: 7 V STM32 -->
+        <path class="t-wire" d="M168 298 H196 M250 298 H336"/>
+        <path class="t-flow" d="M168 298 H196 M250 298 H336"/>
+        <rect class="t-buck" x="196" y="284" width="54" height="28" rx="3"/>
+        <text class="t-small" x="223" y="302" text-anchor="middle">buck</text>
+        <rect class="t-pill" x="266" y="274" width="48" height="18" rx="9"/>
+        <text class="t-volt" x="290" y="287" text-anchor="middle">7.0 V</text>
+        <rect class="t-box" x="336" y="272" width="196" height="52" rx="4"/>
+        <text class="t-label" x="348" y="294">STM32</text>
+        <text class="t-sub" x="348" y="312">real-time motor + servo control</text>
+
+        <!-- UART link -->
+        <path class="t-data" d="M500 240 V272"/>
+        <text class="t-uart" x="494" y="260" text-anchor="end">UART</text>
+      </svg>
+      <figcaption>Power tree of the robot I'm building now. I laid out the distribution board in EasyEDA: motors run straight off the pack, and three buck converters feed the arm, the Jetson and the STM32.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p>Four robots, newest first. On each one I've owned a different layer: mechanical, embedded, power, and now the whole stack.</p>
+    </div>
+
+    <!-- 1 -->
+    <article class="project" id="mobile-manipulator">
+      <header class="p-head">
+        <h3>Mobile manipulator for warehouse assistance <span class="status">In progress</span></h3>
+        <p class="p-when num">Jul 2026 to now</p>
+        <p class="p-role"><b>Independent project.</b> Mechanical, electrical, firmware and ROS 2, all mine.</p>
+      </header>
+      <div class="p-body">
+        <div class="p-text">
+          <p>A mecanum-wheel base carrying a 5-DoF arm, built to pick and place items in a warehouse. A Jetson Orin Nano runs perception and ROS 2 planning; an STM32 handles real-time motor and servo control, and the two talk over UART. I started it to learn the software layers I couldn't contribute to on my capstone.</p>
+          <h4>What I've done so far</h4>
+          <ul>
+            <li>Modeled the chassis in Onshape and 3D-printed it.</li>
+            <li>Chose the hardware: 4 Hall-encoder gear motors, 5 HX-12H joint servos with an HTS-21H gripper, an Aurora 930 Pro depth camera and a Coin-D6 LiDAR.</li>
+            <li>Designed a power distribution PCB for an 11.1 V 3S pack, with buck regulation to 6 V, 9 V and 7 V.</li>
+            <li>Teaching myself ROS 2 and YOLO to bring up teleoperation and depth-fused object detection.</li>
+          </ul>
+        </div>
+        <aside class="p-side">
+          <figure class="media"><figcaption>Photo: printed chassis with arm and sensors mounted</figcaption></figure>
+          <h4>Build log</h4>
+          <ol class="log">
+            <li><span class="when">Jul 2026</span><span>Planning, part selection, CAD</span></li>
+            <li><span class="when">Oct 2026</span><span>Chassis printed, hardware complete</span></li>
+            <li><span class="when">Nov 2026</span><span>Power PCB sent to fab; ROS 2 environment setup</span></li>
+            <li class="next"><span class="when">Next</span><span>Base teleoperation, then YOLO + depth object detection</span></li>
+            <li class="next"><span class="when">Later</span><span>Natural-language voice control through an on-device or cloud LLM</span></li>
+          </ol>
+        </aside>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="project" id="capstone">
+      <header class="p-head">
+        <h3>Assistive 7-DoF robotic arm for remote operation</h3>
+        <p class="p-when num">Sep 2025 to Jun 2026</p>
+        <p class="p-role"><b>Electrical Lead</b>, senior capstone (ECE 129), team of 4</p>
+      </header>
+      <div class="p-body">
+        <div class="p-text">
+          <p>A remote-controlled 7-DoF arm that lifts a 250 g payload, driven by an ESP32 Bluetooth joystick, with AprilTag vision on a Jetson Orin Nano and servo control on an STM32 Nucleo F446RE. I owned the electrical subsystem and the low-level joint control.</p>
+          <h4>What I did</h4>
+          <ul>
+            <li>Architected a multi-rail power system from a 19.5 V / 240 W input: four 7.0 V buck branches sharing the servo load, dedicated 11.5 V and 8.75 V rails, plus fuse and TVS protection.</li>
+            <li>Designed custom PCBs (buck converters, power distribution, Nucleo I/O shield, controller BMS) through 3 faculty-reviewed iterations.</li>
+            <li>Wrote joint control in C++ that turns kinematic angle targets into calibrated servo commands.</li>
+          </ul>
+          <p class="bug"><b>Hardest problem</b>Noise on the converter outputs. I tightened the feedback loop into a compact, ground-referenced layout and widened the copper power pours, then checked every rail on the oscilloscope under load.</p>
+        </div>
+        <aside class="p-side">
+          <figure class="media"><figcaption>Video: the arm running a full-speed 6-servo motion test</figcaption></figure>
+          <h4>Measured</h4>
+          <dl class="specs">
+            <dt>0.53 %</dt><dd>ripple on the Jetson rail (0.76 % on STM32)</dd>
+            <dt>2.2 %</dt><dd>ripple on the servo rail under a moving 250 g load</dd>
+            <dt>10 min</dt><dd>full-speed motion with no overheating, brownout or reset</dd>
+            <dt>~85 ms</dt><dd>average command latency, against a 250 ms target</dd>
+            <dt>10–25 mm</dt><dd>positioning accuracy, limited by open-loop servos</dd>
+          </dl>
+        </aside>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="project" id="teleop-arm">
+      <header class="p-head">
+        <h3>4-DoF teleoperated arm with IMU and flex sensors</h3>
+        <p class="p-when num">Jan to Mar 2026</p>
+        <p class="p-role"><b>Embedded Lead</b>, ECE 167 Sensing &amp; Sensor Technologies final project</p>
+      </header>
+      <div class="p-body">
+        <div class="p-text">
+          <p>A wearable controller that makes a robotic arm copy your hand. IMU orientation and flex/force readings map 1:1 to servo commands, so the arm mimics the operator's motion.</p>
+          <h4>What I did</h4>
+          <ul>
+            <li>Wrote interrupt-driven C firmware on an STM32F411RE reading the IMU, flex/FSR, encoder and ultrasonic sensors over I²C, ADC, PWM and interrupts.</li>
+            <li>Calibrated the IMU with bias/scale correction and ellipsoid fitting, then cleaned the signals with IIR filtering and regression.</li>
+            <li>Co-designed dual-buck power distribution with per-servo decoupling.</li>
+          </ul>
+          <p class="bug"><b>Hardest problem</b>Servo jitter. I reworked the control loop with a deadband, low-pass filtering and rate limiting until the arm held still when my hand did.</p>
+        </div>
+        <aside class="p-side">
+          <figure class="media"><figcaption>Video: gesture-controlled pick and place</figcaption></figure>
+          <h4>Measured</h4>
+          <dl class="specs">
+            <dt>&lt; 30 s</dt><dd>pick and place, twice as fast as required</dd>
+            <dt>3.75°</dt><dd>encoder resolution</dd>
+            <dt>&gt; 6 A</dt><dd>stall current with the supply voltage holding</dd>
+          </dl>
+        </aside>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="project" id="conveyor">
+      <header class="p-head">
+        <h3>Autonomous package-sorting conveyor</h3>
+        <p class="p-when num">Apr to Jun 2025</p>
+        <p class="p-role"><b>Mechanical Lead</b>, ECE 118 Mechatronics final project</p>
+      </header>
+      <div class="p-body">
+        <div class="p-text">
+          <p>A conveyor that sorts packages into 6 bins by color and weight, using a load cell, a color sensor, IR beam-breaks and servo pushers, all run by hierarchical state machines in C on a PIC32.</p>
+          <h4>What I did</h4>
+          <ul>
+            <li>Designed every mechanical part in Onshape: belt chassis, load-cell weighing station, servo pusher arm, swappable sorting slots, and a roller mount with adjustable belt tension.</li>
+            <li>Fabricated all of it with FDM 3D printing.</li>
+            <li>Added sensor-gated flow control: the next package is weighed and released only after the beam-breaks confirm the belt is clear.</li>
+          </ul>
+          <p class="bug"><b>Hardest problem</b>Packages were landing in the wrong weight class depending on how they were placed. Dropped light ones read heavy, and slowly released heavy ones read light. A settling delay before sampling the load cell fixed it.</p>
+        </div>
+        <aside class="p-side">
+          <figure class="media"><figcaption>Video: the conveyor sorting a mixed batch</figcaption></figure>
+          <h4>Measured</h4>
+          <dl class="specs">
+            <dt>100 %</dt><dd>sorting accuracy across 6 categories</dd>
+            <dt>15–18 / min</dt><dd>throughput, 2.5–3× the required 6 per minute</dd>
+          </dl>
+        </aside>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="story">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Why I build robots</h2>
+      <p>My parents work in the auto industry, and I grew up surrounded by the model cars my father brought home.</p>
+    </div>
+    <ol class="story">
+      <li>
+        <h3>A Mini 4WD that couldn't see the track</h3>
+        <p>As a kid I raced Mini 4WD cars, measuring parts with calipers and tuning damping and center of gravity. However well I tuned them, they had no idea where the track went.</p>
+      </li>
+      <li>
+        <h3>A capstone arm that stalled on software</h3>
+        <p>On my capstone I built the power system and low-level control. When the vision and planning stack stalled, I didn't yet know ROS 2 or perception well enough to help fix it.</p>
+      </li>
+      <li>
+        <h3>A robot that sees and listens</h3>
+        <p>So I'm building one where I write every layer, from the power board to object detection. The long-term goal is a home robot that takes chores off a family's hands.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Tools I've used on the projects above.</p>
+    </div>
+    <dl class="skills">
+      <div><dt>Programming</dt><dd>C, C++, Python, MATLAB</dd></div>
+      <div><dt>Embedded platforms</dt><dd>STM32F411RE / F446RE (Nucleo), PIC32MX, NVIDIA Jetson Orin Nano, ESP32-C3, BASYS3 FPGA</dd></div>
+      <div><dt>Hardware and interfaces</dt><dd>UART, SPI, I²C, PWM, ADC/DAC, GPIO, interrupts, H-bridge motor drivers, oscilloscope, multimeter</dd></div>
+      <div><dt>Robotics and controls</dt><dd>Forward and inverse kinematics, hierarchical state machines, sensor calibration and filtering, teleoperation</dd></div>
+      <div><dt>Design tools</dt><dd>EasyEDA, Altium Designer, Cadence, Onshape, MPLAB X, PlatformIO, Vivado, Git, Linux</dd></div>
+      <div><dt>Fabrication and testing</dt><dd>PCB design and soldering, FDM 3D printing, laser cutting, custom test fixtures, system validation</dd></div>
+    </dl>
+    <p class="courses"><b>Relevant coursework:</b> Mechatronics (ECE 118), Microprocessor System Design (ECE 121), Sensing &amp; Sensor Technologies (ECE 167), Robotics Capstone (ECE 129), Feedback Control (ECE 141), Logic Design (CSE 100), Circuit Analysis (ECE 101)</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's talk robots.</h2>
+    <div>
+      <p>I'm applying to master's programs in robotics and happy to share more detail, schematics or videos of any project here.</p>
+      <p class="mail"><a href="mailto:winbondzhang@gmail.com">winbondzhang@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Huabang Zhang, updated November 2026</div>
+</footer>
+
+</body>
+</html>
