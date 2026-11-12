@@ -325,13 +325,15 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
     <!-- 2 -->
     <article class="project" id="capstone">
       <header class="p-head">
-        <h3>Assistive 7-DoF robotic arm for remote operation</h3>
+        <h3>Assistive 7-DoF robotic arm for daily living</h3>
         <p class="p-when num">Sep 2025 to Jun 2026</p>
         <p class="p-role"><b>Electrical Lead</b>, senior capstone (ECE 129), team of 4</p>
       </header>
       <div class="p-body">
         <div class="p-text">
-          <p>A remote-controlled 7-DoF arm that lifts a 250 g payload, driven by an ESP32 Bluetooth joystick, with AprilTag vision on a Jetson Orin Nano and servo control on an STM32 Nucleo F446RE. I owned the electrical subsystem and the low-level joint control.</p>
+          <p>A 7-DoF arm that helps people with injured or limited hand function get through everyday tasks. The arm scans the table with its camera, works out what is there, and offers choices that the user picks with an ESP32 Bluetooth joystick.</p>
+          <p style="margin-top:12px">In the kitchen, it reads which seasonings are on the counter and lists the recipes it can make. Once the user picks a dish, it cooks step by step: picks up the spatula and stirs, sets it down, grabs a seasoning jar, adds it, puts the jar back and keeps going until the dish is done. For everyday help, it lists the objects it sees, such as a phone, a straw or a pen, and hands over the one the user selects.</p>
+          <p style="margin-top:12px">The hardware: a 250 g-payload arm with servo control on an STM32 Nucleo F446RE and AprilTag vision on a Jetson Orin Nano. I owned the electrical subsystem and the low-level joint control. The perception and task-planning software didn't reach a working end-to-end demo by the end of the capstone. That gap is why I'm now learning ROS 2 and YOLO on my own robot.</p>
           <h4>What I did</h4>
           <ul>
             <li>Architected a multi-rail power system from a 19.5 V / 240 W input: four 7.0 V buck branches sharing the servo load, dedicated 11.5 V and 8.75 V rails, plus fuse and TVS protection.</li>
