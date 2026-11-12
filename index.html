@@ -158,6 +158,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
 /* media strips: one justified row per project, each item sized by its aspect ratio (--r) */
 .p-side>h4:first-child{margin-top:0}
 .strip{display:flex;gap:10px;margin-top:clamp(24px,3vw,36px)}
+.strip+.strip{margin-top:10px}
 .strip figure{margin:0;flex:var(--r) 1 0;aspect-ratio:var(--r);min-width:0}
 .strip .open{all:unset;box-sizing:border-box;display:block;position:relative;width:100%;height:100%;border-radius:6px;overflow:hidden;background:var(--surface);cursor:zoom-in}
 .strip .open:focus-visible{outline:2px solid var(--probe);outline-offset:3px}
@@ -350,14 +351,15 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           </dl>
         </aside>
       </div>
-      <div class="strip" aria-label="Photos and videos of the 7-DoF arm">
-        <figure style="--r:.5625"><button class="open" type="button" data-type="video" data-src="media/7dof-lift-1.mp4" data-cap="Lift test"><video src="media/7dof-lift-1.mp4" poster="media/7dof-lift-1-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="cap">Lift test</span></button></figure>
-        <figure style="--r:.5625"><button class="open" type="button" data-type="video" data-src="media/7dof-lift-2.mp4" data-cap="Lift test, second take"><video src="media/7dof-lift-2.mp4" poster="media/7dof-lift-2-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="cap">Lift test, second take</span></button></figure>
-        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-3.jpg" data-cap="Assembled arm on its base"><img src="media/7dof-assembly-3.jpg" alt="The assembled 7-DoF arm standing on its legged base with servo wiring" loading="lazy"><span class="cap">Assembled arm on its base</span></button></figure>
-        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-2.jpg" data-cap="Fitting the joints"><img src="media/7dof-assembly-2.jpg" alt="The arm partly assembled on a lab bench" loading="lazy"><span class="cap">Fitting the joints</span></button></figure>
-        <figure style="--r:1.2336"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-1.jpg" data-cap="Printed links and servos"><img src="media/7dof-assembly-1.jpg" alt="3D-printed arm links and a servo laid out before assembly" loading="lazy"><span class="cap">Printed links and servos</span></button></figure>
+      <div class="strip" aria-label="Photos and video of the 7-DoF arm">
+        <figure class="wide" style="--r:1.7778"><button class="open" type="button" data-type="video" data-src="media/7dof-power-debug.mp4" data-cap="Hardware debug: the arm moving on our custom power boards"><video src="media/7dof-power-debug.mp4" poster="media/7dof-power-debug-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="cap">Hardware debug: the arm moving on our power boards</span></button></figure>
+        <figure class="wide" style="--r:1.3333"><button class="open" type="button" data-type="img" data-src="media/7dof-system.jpg" data-cap="Full system with the ESP32 joystick"><img src="media/7dof-system.jpg" alt="The 7-DoF arm on its legged base beside the power boards, Jetson Orin Nano and joystick controller" loading="lazy"><span class="cap">Full system with the ESP32 joystick</span></button></figure>
       </div>
-      <p class="credit">Team photos and video, capstone group.</p>
+      <div class="strip">
+        <figure class="wide" style="--r:1.3333"><button class="open" type="button" data-type="img" data-src="media/7dof-power-boards.jpg" data-cap="Power boards: 19.5 V input, four 7 V servo bucks, Jetson and Nucleo rails"><img src="media/7dof-power-boards.jpg" alt="Custom power PCBs: a 19.5 V input board, four 7 V servo buck converters, an 11.5 V Jetson buck and a small Nucleo regulator, with the Nucleo and Jetson" loading="lazy"><span class="cap">Power boards: 19.5 V input, four 7 V servo bucks, Jetson and Nucleo rails</span></button></figure>
+        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/7dof-io-shield.jpg" data-cap="Nucleo I/O shield"><img src="media/7dof-io-shield.jpg" alt="Custom I/O shield on an STM32 Nucleo with a 2-inch LCD, buttons, LEDs and a potentiometer" loading="lazy"><span class="cap">Nucleo I/O shield</span></button></figure>
+        <figure style="--r:1.3333"><button class="open" type="button" data-type="img" data-src="media/7dof-controller-bms.jpg" data-cap="Joystick battery board for the ESP32"><img src="media/7dof-controller-bms.jpg" alt="Custom battery and charging board for the ESP32 joystick, mounted on a Li-ion pouch cell" loading="lazy"><span class="cap">Joystick battery board for the ESP32</span></button></figure>
+      </div>
     </article>
 
     <!-- 3 -->
