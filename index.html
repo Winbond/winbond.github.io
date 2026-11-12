@@ -154,6 +154,33 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   .bar nav{gap:14px}
   .log li{grid-template-columns:80px 1fr}
 }
+
+/* media strips: one justified row per project, each item sized by its aspect ratio (--r) */
+.p-side>h4:first-child{margin-top:0}
+.strip{display:flex;gap:10px;margin-top:clamp(24px,3vw,36px)}
+.strip figure{margin:0;flex:var(--r) 1 0;aspect-ratio:var(--r);min-width:0}
+.strip .open{all:unset;box-sizing:border-box;display:block;position:relative;width:100%;height:100%;border-radius:6px;overflow:hidden;background:var(--surface);cursor:zoom-in}
+.strip .open:focus-visible{outline:2px solid var(--probe);outline-offset:3px}
+.strip img,.strip video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
+.strip .open:hover img,.strip .open:hover video{transform:scale(1.025)}
+.cap{position:absolute;left:8px;bottom:8px;max-width:calc(100% - 16px);background:rgba(10,14,18,.72);color:#fff;font-size:13px;line-height:1.35;padding:4px 8px;border-radius:3px}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;background:rgba(10,14,18,.72);color:#fff;font-size:13px;font-weight:600;padding:8px 12px 8px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
+.play::before{content:"";width:0;height:0;border-left:10px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.credit{font-size:13px;color:var(--muted);margin-top:8px}
+@media (max-width:640px){
+  .strip{flex-wrap:wrap}
+  .strip figure{flex:1 1 calc(50% - 5px);aspect-ratio:3/4}
+  .strip figure.wide{flex-basis:100%;aspect-ratio:var(--r)}
+}
+@media (prefers-reduced-motion:reduce){.strip img,.strip video{transition:none}}
+
+/* lightbox */
+#lb{border:0;padding:0;background:transparent;max-width:min(94vw,1200px);max-height:92vh;overflow:visible}
+#lb::backdrop{background:rgba(6,9,12,.86)}
+#lb .lb-media{display:block;max-width:min(94vw,1200px);max-height:80vh;width:auto;height:auto;margin:0 auto;border-radius:6px;background:#000}
+#lb p{color:#E8ECEF;font-size:15px;text-align:center;margin-top:10px}
+#lb-close{position:fixed;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:4px;font:600 15px var(--body);padding:8px 14px;cursor:pointer}
+#lb-close:hover{background:rgba(255,255,255,.22)}
 </style>
 </head>
 <body>
@@ -313,7 +340,6 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <p class="bug"><b>Hardest problem</b>Noise on the converter outputs. I tightened the feedback loop into a compact, ground-referenced layout and widened the copper power pours, then checked every rail on the oscilloscope under load.</p>
         </div>
         <aside class="p-side">
-          <figure class="media"><figcaption>Video: the arm running a full-speed 6-servo motion test</figcaption></figure>
           <h4>Measured</h4>
           <dl class="specs">
             <dt>0.53 %</dt><dd>ripple on the Jetson rail (0.76 % on STM32)</dd>
@@ -324,6 +350,14 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           </dl>
         </aside>
       </div>
+      <div class="strip" aria-label="Photos and videos of the 7-DoF arm">
+        <figure style="--r:.5625"><button class="open" type="button" data-type="video" data-src="media/7dof-lift-1.mp4" data-cap="Lift test"><video src="media/7dof-lift-1.mp4" poster="media/7dof-lift-1-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="cap">Lift test</span></button></figure>
+        <figure style="--r:.5625"><button class="open" type="button" data-type="video" data-src="media/7dof-lift-2.mp4" data-cap="Lift test, second take"><video src="media/7dof-lift-2.mp4" poster="media/7dof-lift-2-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="cap">Lift test, second take</span></button></figure>
+        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-3.jpg" data-cap="Assembled arm on its base"><img src="media/7dof-assembly-3.jpg" alt="The assembled 7-DoF arm standing on its legged base with servo wiring" loading="lazy"><span class="cap">Assembled arm on its base</span></button></figure>
+        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-2.jpg" data-cap="Fitting the joints"><img src="media/7dof-assembly-2.jpg" alt="The arm partly assembled on a lab bench" loading="lazy"><span class="cap">Fitting the joints</span></button></figure>
+        <figure style="--r:1.2336"><button class="open" type="button" data-type="img" data-src="media/7dof-assembly-1.jpg" data-cap="Printed links and servos"><img src="media/7dof-assembly-1.jpg" alt="3D-printed arm links and a servo laid out before assembly" loading="lazy"><span class="cap">Printed links and servos</span></button></figure>
+      </div>
+      <p class="credit">Team photos and video, capstone group.</p>
     </article>
 
     <!-- 3 -->
@@ -345,7 +379,6 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <p class="bug"><b>Hardest problem</b>Servo jitter. I reworked the control loop with a deadband, low-pass filtering and rate limiting until the arm held still when my hand did.</p>
         </div>
         <aside class="p-side">
-          <figure class="media"><figcaption>Video: gesture-controlled pick and place</figcaption></figure>
           <h4>Measured</h4>
           <dl class="specs">
             <dt>&lt; 30 s</dt><dd>pick and place, twice as fast as required</dd>
@@ -354,6 +387,12 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           </dl>
         </aside>
       </div>
+      <div class="strip" aria-label="Photos and videos of the 4-DoF arm">
+        <figure class="wide" style="--r:1.7778"><button class="open" type="button" data-type="video" data-src="media/4dof-hand-control.mp4" data-cap="The arm follows the glove"><img src="media/4dof-hand-control-poster.jpg" alt="" loading="lazy"><span class="play">1:06</span><span class="cap">The arm follows the glove</span></button></figure>
+        <figure style="--r:.5625"><button class="open" type="button" data-type="video" data-src="media/4dof-pick-place.mp4" data-cap="Pick and place"><img src="media/4dof-pick-place-poster.jpg" alt="" loading="lazy"><span class="play">0:37</span><span class="cap">Pick and place</span></button></figure>
+        <figure style="--r:1.2211"><button class="open" type="button" data-type="img" data-src="media/4dof-system.jpg" data-cap="Bench setup: supplies, STM32 board, sensor glove"><img src="media/4dof-system.jpg" alt="The 4-DoF arm on a bench with a power supply, STM32 boards and the sensor glove" loading="lazy"><span class="cap">Bench setup: supplies, STM32 board, sensor glove</span></button></figure>
+      </div>
+      <p class="credit">Team photos and video, ECE 167 group.</p>
     </article>
 
     <!-- 4 -->
@@ -443,5 +482,42 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   <div class="wrap">Huabang Zhang, updated November 2026</div>
 </footer>
 
+
+<dialog id="lb" aria-label="Enlarged photo or video">
+  <button id="lb-close" type="button">Close</button>
+  <div id="lb-body"></div>
+  <p id="lb-cap"></p>
+</dialog>
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) document.querySelectorAll('.strip video[autoplay]').forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); });
+  var lb = document.getElementById('lb'), body = document.getElementById('lb-body'), cap = document.getElementById('lb-cap');
+  if (!lb || typeof lb.showModal !== 'function') return;
+  document.querySelectorAll('.strip .open').forEach(function(b){
+    b.addEventListener('click', function(){
+      body.innerHTML = '';
+      var el;
+      if (b.dataset.type === 'video') {
+        el = document.createElement('video');
+        el.controls = true; el.playsInline = true; el.src = b.dataset.src;
+        el.poster = b.dataset.src.replace('.mp4','-poster.jpg');
+      } else {
+        el = document.createElement('img');
+        el.src = b.dataset.src; el.alt = (b.querySelector('img') || {}).alt || '';
+      }
+      el.className = 'lb-media';
+      body.appendChild(el);
+      cap.textContent = b.dataset.cap || '';
+      lb.showModal();
+      if (el.tagName === 'VIDEO') { var p = el.play(); if (p && p.catch) p.catch(function(){}); }
+    });
+  });
+  function shut(){ lb.close(); }
+  document.getElementById('lb-close').addEventListener('click', shut);
+  lb.addEventListener('click', function(e){ if (e.target === lb) shut(); });
+  lb.addEventListener('close', function(){ body.innerHTML = ''; });
+})();
+</script>
 </body>
 </html>
