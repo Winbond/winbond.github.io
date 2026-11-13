@@ -205,7 +205,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
 <div class="hero">
   <div class="wrap">
     <div>
-      <h1>Huabang<br>Zhang<span>Robotics engineer. Call me Jay</span></h1>
+      <h1>Huabang<br>Zhang<span>Robotics engineer, goes by Jay</span></h1>
       <p class="lede">I design the power and embedded systems that make robots move. Now I'm teaching them to see.</p>
       <dl class="facts">
         <dt>Studying</dt><dd>B.S. Robotics Engineering, minor in Electrical Engineering, UC Santa Cruz</dd>
@@ -281,7 +281,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
         <path class="t-data" d="M500 240 V272"/>
         <text class="t-uart" x="494" y="260" text-anchor="end">UART</text>
       </svg>
-      <figcaption>Power tree of the robot I'm building now. I designed the power board in EasyEDA. The motors run directly from the battery, and three buck converters power the arm, the Jetson and the STM32.</figcaption>
+      <figcaption>Power tree of the robot I'm building now. I laid out the distribution board in EasyEDA: motors run straight off the pack, and three buck converters feed the arm, the Jetson and the STM32.</figcaption>
     </figure>
   </div>
 </div>
@@ -290,7 +290,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   <div class="wrap">
     <div class="sec-head">
       <h2>Projects</h2>
-      <p>Four robots, newest first. On each team I led a different part: mechanical design, embedded systems, power electronics. Now I'm building a whole robot on my own.</p>
+      <p>Four robots, newest first. On each one I've owned a different layer: mechanical, embedded, power, and now the whole stack.</p>
     </div>
 
     <!-- 1 -->
@@ -298,17 +298,17 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       <header class="p-head">
         <h3>Mobile manipulator for warehouse assistance <span class="status">In progress</span></h3>
         <p class="p-when num">Jul 2026 to now</p>
-        <p class="p-role"><b>Personal project.</b> I do everything: mechanical, electrical, firmware and ROS 2.</p>
+        <p class="p-role"><b>Independent project.</b> Mechanical, electrical, firmware and ROS 2, all mine.</p>
       </header>
       <div class="p-body">
         <div class="p-text">
-          <p>A mecanum-wheel base carrying a 5-DoF arm, built to pick and place items in a warehouse. A Jetson Orin Nano runs perception and ROS 2 planning; an STM32 handles real-time motor and servo control, and the two talk over UART. I started this project to build every part myself, including the ROS 2 and vision software that I had not worked on before.</p>
+          <p>A mecanum-wheel base carrying a 5-DoF arm, built to pick and place items in a warehouse. A Jetson Orin Nano runs perception and ROS 2 planning; an STM32 handles real-time motor and servo control, and the two talk over UART. I started it to own every layer myself, including the ROS 2 and vision software I hadn't worked on before.</p>
           <h4>What I've done so far</h4>
           <ul>
             <li>Modeled the chassis in Onshape and 3D-printed it.</li>
             <li>Chose the hardware: 4 Hall-encoder gear motors, 5 HX-12H joint servos with an HTS-21H gripper, an Aurora 930 Pro depth camera and a Coin-D6 LiDAR.</li>
             <li>Designed a power distribution PCB for an 11.1 V 3S pack, with buck regulation to 6 V, 9 V and 7 V.</li>
-            <li>Learning ROS 2 and YOLO on my own, so I can drive the robot remotely and detect objects with the depth camera.</li>
+            <li>Teaching myself ROS 2 and YOLO to bring up teleoperation and depth-fused object detection.</li>
           </ul>
         </div>
         <aside class="p-side">
@@ -334,16 +334,16 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       </header>
       <div class="p-body">
         <div class="p-text">
-          <p>A 7-DoF arm that helps people with injured or weak hands do everyday tasks. The arm scans the table with its camera, recognizes what is on it, and offers choices that the user picks with an ESP32 Bluetooth joystick.</p>
-          <p style="margin-top:12px">In the kitchen, it reads which seasonings are on the counter and lists the recipes it can make. Once the user picks a dish, it cooks step by step: picks up the spatula and stirs, sets it down, grabs a seasoning jar, adds it, puts the jar back and keeps going until the dish is done. For everyday help, it lists the objects it sees, such as a phone, a straw or a pen, and brings the one the user chooses.</p>
-          <p style="margin-top:12px">The arm can lift 250 g. An STM32 Nucleo F446RE controls the servos, and a Jetson Orin Nano runs AprilTag vision. I was responsible for the electrical system and the low-level joint control.</p>
+          <p>A 7-DoF arm that helps people with injured or limited hand function get through everyday tasks. The arm scans the table with its camera, works out what is there, and offers choices that the user picks with an ESP32 Bluetooth joystick.</p>
+          <p style="margin-top:12px">In the kitchen, it reads which seasonings are on the counter and lists the recipes it can make. Once the user picks a dish, it cooks step by step: picks up the spatula and stirs, sets it down, grabs a seasoning jar, adds it, puts the jar back and keeps going until the dish is done. For everyday help, it lists the objects it sees, such as a phone, a straw or a pen, and hands over the one the user selects.</p>
+          <p style="margin-top:12px">The hardware: a 250 g-payload arm with servo control on an STM32 Nucleo F446RE and AprilTag vision on a Jetson Orin Nano. I owned the electrical subsystem and the low-level joint control.</p>
           <h4>What I did</h4>
           <ul>
-            <li>Designed a power system with several voltage rails from one 19.5 V / 240 W input: four 7.0 V buck branches sharing the servo load, dedicated 11.5 V and 8.75 V rails, plus fuse and TVS protection.</li>
+            <li>Architected a multi-rail power system from a 19.5 V / 240 W input: four 7.0 V buck branches sharing the servo load, dedicated 11.5 V and 8.75 V rails, plus fuse and TVS protection.</li>
             <li>Designed custom PCBs (buck converters, power distribution, Nucleo I/O shield, controller BMS) through 3 faculty-reviewed iterations.</li>
             <li>Wrote joint control in C++ that turns kinematic angle targets into calibrated servo commands.</li>
           </ul>
-          <p class="bug"><b>Hardest problem</b>Noise on the converter outputs. I redesigned the PCB layout with a shorter, ground-referenced feedback loop and wider copper areas for power. Then I checked every rail with an oscilloscope under load.</p>
+          <p class="bug"><b>Hardest problem</b>Noise on the converter outputs. I tightened the feedback loop into a compact, ground-referenced layout and widened the copper power pours, then checked every rail on the oscilloscope under load.</p>
         </div>
         <aside class="p-side">
           <h4>Measured</h4>
@@ -376,7 +376,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       </header>
       <div class="p-body">
         <div class="p-text">
-          <p>A wearable controller that makes a robotic arm copy your hand. IMU orientation and flex/force readings map 1:1 to servo commands, so the arm copies the operator's hand movements.</p>
+          <p>A wearable controller that makes a robotic arm copy your hand. IMU orientation and flex/force readings map 1:1 to servo commands, so the arm mimics the operator's motion.</p>
           <h4>What I did</h4>
           <ul>
             <li>Wrote interrupt-driven C firmware on an STM32F411RE reading the IMU, flex/FSR, encoder and ultrasonic sensors over I²C, ADC, PWM and interrupts.</li>
@@ -390,7 +390,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <dl class="specs">
             <dt>&lt; 30 s</dt><dd>pick and place, twice as fast as required</dd>
             <dt>3.75°</dt><dd>encoder resolution</dd>
-            <dt>&gt; 6 A</dt><dd>stall current while the supply voltage stayed stable</dd>
+            <dt>&gt; 6 A</dt><dd>stall current with the supply voltage holding</dd>
           </dl>
         </aside>
       </div>
@@ -415,7 +415,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <h4>What I did</h4>
           <ul>
             <li>Designed every mechanical part in Onshape: belt chassis, load-cell weighing station, servo pusher arm, swappable sorting slots, and a roller mount with adjustable belt tension.</li>
-            <li>Built it mostly from laser-cut plywood, which the course required. We only 3D-printed the parts that wood could not do: the belt rollers, the curved arm that pushes packages off the weigh station, and the connectors between the servos and the wood.</li>
+            <li>Built it almost entirely from laser-cut plywood, as the course required, and 3D-printed only what wood couldn't do: the belt rollers, the curved arm that pushes packages off the weigh station, and the couplers between servo horns and wood.</li>
             <li>Added sensor-gated flow control: the next package is weighed and released only after the beam-breaks confirm the belt is clear.</li>
           </ul>
           <p class="bug"><b>Hardest problem</b>Packages were landing in the wrong weight class depending on how they were placed. Dropped light ones read heavy, and slowly released heavy ones read light. A settling delay before sampling the load cell fixed it.</p>
@@ -449,42 +449,42 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   <div class="wrap">
     <div class="sec-head">
       <h2>Why I build robots</h2>
-      <p>In short: I have been taking things apart since I was a kid. In robotics, I learned to put them back together and make them work on their own.</p>
+      <p>Short version: I never stopped taking things apart. Robotics is where I learned to put them back together so they could think for themselves.</p>
     </div>
     <ol class="story">
       <li>
         <span class="stage">As a kid</span>
         <div>
-          <h3>If it had screws, I opened it</h3>
-          <p>When my family replaced an old camera, cassette player or radio, it ended up on my desk in pieces. My parents let me do it. Now I know that took a lot of patience. My RC cars, RC planes and Mini 4WD race cars were the same: crash, open, fix, make it faster, repeat.</p>
+          <h3>Anything with screws was fair game</h3>
+          <p>Every camera, cassette player and radio my family retired ended up on my desk in pieces. My parents let me, which I now realize took a lot of patience. RC cars, RC planes and Mini 4WD racers got the same treatment: crash, open up, fix, make faster, repeat.</p>
         </div>
       </li>
       <li>
         <span class="stage">At home</span>
         <div>
-          <h3>Our family's first PC, built by me</h3>
-          <p>I read a book about computers, picked the parts and built our family's first desktop myself. Then I installed the system and every program I could find, and played with all of it.</p>
+          <h3>Our first family PC, built from a book</h3>
+          <p>I read a book about PCs, picked the parts and built our family's first desktop myself, then installed the OS and every program I could find and tinkered with all of it.</p>
         </div>
       </li>
       <li>
         <span class="stage">High school</span>
         <div>
           <h3>The first machines that made their own decisions</h3>
-          <p>With Arduino, my projects could finally sense things and react. I built an irrigation system that read temperature, light and soil moisture and ran a motor to water the plants on its own, and a three-wheeled line-following car.</p>
+          <p>Arduino changed everything: suddenly my projects could sense and react. I built an irrigation system that read temperature, light and soil moisture and ran a motor to water the plants on its own, and a three-wheeled line-following car.</p>
         </div>
       </li>
       <li>
         <span class="stage">UC Santa Cruz</span>
         <div>
-          <h3>I found mechatronics</h3>
-          <p>At UCSC, the projects I enjoyed most were the ones where I designed the parts, wired the circuits and wrote the code for the same machine. That mix is called mechatronics, and it is how I chose robotics.</p>
+          <h3>Mechatronics clicked</h3>
+          <p>At UCSC, the projects I enjoyed most were the ones where I designed the parts, wired the circuits and wrote the code for the same machine. That combination is mechatronics, and it led me straight to robotics.</p>
         </div>
       </li>
       <li class="now">
         <span class="stage">Now</span>
         <div>
           <h3>Teaching a robot to see</h3>
-          <p>So far I've mostly worked on the hardware side: power, embedded control and mechanical design. Now I want to do the whole robot myself, so I'm building a robot where I write every layer, from the power board to object detection. The long-term goal is a home robot. I do most of the cooking and chores at home, and I already know which ones it gets first.</p>
+          <p>So far I've mostly worked on the hardware side: power, embedded control and mechanical design. Now I want to own the whole stack, so I'm building a robot where I write every layer, from the power board to object detection. The long-term goal is a home robot. I do most of the cooking and chores at home, and I already know which ones it gets first.</p>
         </div>
       </li>
     </ol>
@@ -513,7 +513,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   <div class="wrap">
     <h2>Let's talk robots.</h2>
     <div>
-      <p>I'm applying to master's programs in robotics. If you want more details, schematics or videos of any project, please email me.</p>
+      <p>I'm applying to master's programs in robotics and happy to share more detail, schematics or videos of any project here.</p>
       <p class="mail"><a href="mailto:winbondzhang@gmail.com">winbondzhang@gmail.com</a></p>
     </div>
   </div>
