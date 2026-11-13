@@ -185,11 +185,10 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
 #lb p{color:#E8ECEF;font-size:15px;text-align:center;margin-top:10px}
 #lb-close{position:fixed;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:4px;font:600 15px var(--body);padding:8px 14px;cursor:pointer}
 #lb-close:hover{background:rgba(255,255,255,.22)}
-.shot{margin:0}
-.shot .open{all:unset;box-sizing:border-box;display:block;width:100%;border-radius:6px;overflow:hidden;cursor:zoom-in;border:1px solid var(--rule)}
-.shot .open:focus-visible{outline:2px solid var(--probe);outline-offset:3px}
-.shot img{display:block;width:100%;height:auto}
-.shot figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.strip .fit .open{background:#EBEFF8}
+.strip .fit img{object-fit:contain}
+.strip .fit .open:hover img{transform:none}
+@media (max-width:640px){.strip figure.wide.fit{aspect-ratio:.9}}
 </style>
 </head>
 <body>
@@ -317,7 +316,6 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           </ul>
         </div>
         <aside class="p-side">
-          <figure class="shot"><button class="open" type="button" data-type="img" data-src="media/mm-cad.jpg" data-cap="Full CAD model in Onshape"><img src="media/mm-cad.jpg" alt="Onshape CAD of the mobile manipulator: mecanum-wheel base, screen, arm with gripper and a depth camera on top" loading="lazy"></button><figcaption>Full CAD model in Onshape</figcaption></figure>
           <h4>Build log</h4>
           <ol class="log">
             <li><span class="when">Jul 2026</span><span>Planning, part selection, CAD</span></li>
@@ -327,6 +325,9 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
             <li class="next"><span class="when">Later</span><span>Natural-language voice control through an on-device or cloud LLM</span></li>
           </ol>
         </aside>
+      </div>
+      <div class="strip" aria-label="CAD model of the mobile manipulator">
+        <figure class="wide fit" style="--r:2.6"><button class="open" type="button" data-type="img" data-src="media/mm-cad.jpg" data-cap="Full CAD model in Onshape"><img src="media/mm-cad.jpg" alt="Onshape CAD of the mobile manipulator: mecanum-wheel base, screen, arm with gripper and a depth camera on top" loading="lazy"><span class="cap">Full CAD model in Onshape</span></button></figure>
       </div>
     </article>
 
@@ -539,7 +540,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   if (reduce) document.querySelectorAll('.strip video[autoplay]').forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); });
   var lb = document.getElementById('lb'), body = document.getElementById('lb-body'), cap = document.getElementById('lb-cap');
   if (!lb || typeof lb.showModal !== 'function') return;
-  document.querySelectorAll('.strip .open, .shot .open').forEach(function(b){
+  document.querySelectorAll('.strip .open').forEach(function(b){
     b.addEventListener('click', function(){
       body.innerHTML = '';
       var el;
