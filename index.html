@@ -302,7 +302,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       </header>
       <div class="p-body">
         <div class="p-text">
-          <p>A mecanum-wheel base carrying a 5-DoF arm, built to pick and place items in a warehouse. A Jetson Orin Nano runs perception and ROS 2 planning; an STM32 handles real-time motor and servo control, and the two talk over UART. I started it to learn the software layers I couldn't contribute to on my capstone.</p>
+          <p>A mecanum-wheel base carrying a 5-DoF arm, built to pick and place items in a warehouse. A Jetson Orin Nano runs perception and ROS 2 planning; an STM32 handles real-time motor and servo control, and the two talk over UART. I started it to own every layer myself, including the ROS 2 and vision software I hadn't worked on before.</p>
           <h4>What I've done so far</h4>
           <ul>
             <li>Modeled the chassis in Onshape and 3D-printed it.</li>
@@ -336,7 +336,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
         <div class="p-text">
           <p>A 7-DoF arm that helps people with injured or limited hand function get through everyday tasks. The arm scans the table with its camera, works out what is there, and offers choices that the user picks with an ESP32 Bluetooth joystick.</p>
           <p style="margin-top:12px">In the kitchen, it reads which seasonings are on the counter and lists the recipes it can make. Once the user picks a dish, it cooks step by step: picks up the spatula and stirs, sets it down, grabs a seasoning jar, adds it, puts the jar back and keeps going until the dish is done. For everyday help, it lists the objects it sees, such as a phone, a straw or a pen, and hands over the one the user selects.</p>
-          <p style="margin-top:12px">The hardware: a 250 g-payload arm with servo control on an STM32 Nucleo F446RE and AprilTag vision on a Jetson Orin Nano. I owned the electrical subsystem and the low-level joint control. The perception and task-planning software didn't reach a working end-to-end demo by the end of the capstone. That gap is why I'm now learning ROS 2 and YOLO on my own robot.</p>
+          <p style="margin-top:12px">The hardware: a 250 g-payload arm with servo control on an STM32 Nucleo F446RE and AprilTag vision on a Jetson Orin Nano. I owned the electrical subsystem and the low-level joint control.</p>
           <h4>What I did</h4>
           <ul>
             <li>Architected a multi-rail power system from a 19.5 V / 240 W input: four 7.0 V buck branches sharing the servo load, dedicated 11.5 V and 8.75 V rails, plus fuse and TVS protection.</li>
@@ -462,8 +462,8 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       <li>
         <span class="stage">At home</span>
         <div>
-          <h3>A computer book and a garage</h3>
-          <p>I read a book about PCs, picked the parts and built our family's first desktop myself, then installed the OS and every program I could find and tinkered with all of it. By high school I was also changing the oil and spark plugs on our car in the garage.</p>
+          <h3>Our first family PC, built from a book</h3>
+          <p>I read a book about PCs, picked the parts and built our family's first desktop myself, then installed the OS and every program I could find and tinkered with all of it.</p>
         </div>
       </li>
       <li>
@@ -477,14 +477,14 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
         <span class="stage">UC Santa Cruz</span>
         <div>
           <h3>Mechatronics clicked</h3>
-          <p>In college I noticed that the projects I couldn't put down all lived where mechanics, electronics and code meet. That place has a name, so I made it my major.</p>
+          <p>At UCSC, the projects I enjoyed most were the ones where I designed the parts, wired the circuits and wrote the code for the same machine. That combination is mechatronics, and it led me straight to robotics.</p>
         </div>
       </li>
       <li class="now">
         <span class="stage">Now</span>
         <div>
           <h3>Teaching a robot to see</h3>
-          <p>On my capstone I built the power system and joint control, but the arm never ran end to end because the vision software stalled, and I didn't know enough to help. So I'm building a robot where I write every layer, from the power board to object detection. The long-term goal is a home robot. I do most of the cooking and chores at home, and I already know which ones it gets first.</p>
+          <p>So far I've mostly worked on the hardware side: power, embedded control and mechanical design. Now I want to own the whole stack, so I'm building a robot where I write every layer, from the power board to object detection. The long-term goal is a home robot. I do most of the cooking and chores at home, and I already know which ones it gets first.</p>
         </div>
       </li>
     </ol>
