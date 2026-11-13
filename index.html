@@ -91,12 +91,15 @@ section{padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--rule)}
 .sec-head h2{font-size:clamp(34px,5vw,54px);font-stretch:75%;font-weight:750}
 .sec-head p{color:var(--muted);max-width:60ch}
 
-/* story */
-.story{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);counter-reset:s}
-.story li{counter-increment:s;border-top:3px solid var(--ink);padding-top:16px}
-.story li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted);display:block;margin-bottom:6px}
-.story h3{font-size:24px;font-stretch:87%;font-weight:700;margin-bottom:10px}
-.story p{font-size:16px;max-width:42ch}
+/* story: a vertical timeline, stage on the left, what happened on the right */
+.story{list-style:none;margin:0;padding:0;max-width:920px}
+.story li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:6px 36px;padding:24px 0;border-top:1px solid var(--rule)}
+.story li:last-child{border-bottom:1px solid var(--rule)}
+.story .stage{font-family:var(--display);font-stretch:80%;font-weight:700;font-size:18px;color:var(--muted);padding-top:3px}
+.story h3{font-size:26px;font-stretch:85%;font-weight:700;margin-bottom:8px}
+.story p{max-width:62ch}
+.story li.now h3{color:var(--probe)}
+@media (max-width:640px){.story li{grid-template-columns:minmax(0,1fr)}}
 
 /* projects */
 .project{padding:clamp(32px,4vw,48px) 0;border-top:1px solid var(--rule)}
@@ -144,7 +147,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
 
 @media (max-width:880px){
   .hero .wrap,.p-body,.sec-head,.contact .wrap{grid-template-columns:minmax(0,1fr)}
-  .story,.skills{grid-template-columns:minmax(0,1fr)}
+  .skills{grid-template-columns:minmax(0,1fr)}
   .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:520px){
@@ -412,7 +415,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <h4>What I did</h4>
           <ul>
             <li>Designed every mechanical part in Onshape: belt chassis, load-cell weighing station, servo pusher arm, swappable sorting slots, and a roller mount with adjustable belt tension.</li>
-            <li>Built it from laser-cut plywood with finger joints and FDM 3D-printed parts.</li>
+            <li>Built it almost entirely from laser-cut plywood, as the course required, and 3D-printed only what wood couldn't do: the belt rollers, the curved arm that pushes packages off the weigh station, and the couplers between servo horns and wood.</li>
             <li>Added sensor-gated flow control: the next package is weighed and released only after the beam-breaks confirm the belt is clear.</li>
           </ul>
           <p class="bug"><b>Hardest problem</b>Packages were landing in the wrong weight class depending on how they were placed. Dropped light ones read heavy, and slowly released heavy ones read light. A settling delay before sampling the load cell fixed it.</p>
@@ -446,20 +449,43 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   <div class="wrap">
     <div class="sec-head">
       <h2>Why I build robots</h2>
-      <p>My parents work in the auto industry, and I grew up surrounded by the model cars my father brought home.</p>
+      <p>Short version: I never stopped taking things apart. Robotics is where I learned to put them back together so they could think for themselves.</p>
     </div>
     <ol class="story">
       <li>
-        <h3>A Mini 4WD that couldn't see the track</h3>
-        <p>As a kid I raced Mini 4WD cars, measuring parts with calipers and tuning damping and center of gravity. However well I tuned them, they had no idea where the track went.</p>
+        <span class="stage">As a kid</span>
+        <div>
+          <h3>Anything with screws was fair game</h3>
+          <p>Every camera, cassette player and radio my family retired ended up on my desk in pieces. My parents let me, which I now realize took a lot of patience. RC cars, RC planes and Mini 4WD racers got the same treatment: crash, open up, fix, make faster, repeat.</p>
+        </div>
       </li>
       <li>
-        <h3>A capstone arm that stalled on software</h3>
-        <p>On my capstone I built the power system and low-level control. When the vision and planning stack stalled, I didn't yet know ROS 2 or perception well enough to help fix it.</p>
+        <span class="stage">At home</span>
+        <div>
+          <h3>A computer book and a garage</h3>
+          <p>I read a book about PCs, picked the parts and built our family's first desktop myself, then installed the OS and every program I could find and tinkered with all of it. By high school I was also changing the oil and spark plugs on our car in the garage.</p>
+        </div>
       </li>
       <li>
-        <h3>A robot that sees and listens</h3>
-        <p>So I'm building one where I write every layer, from the power board to object detection. The long-term goal is a home robot that takes chores off a family's hands.</p>
+        <span class="stage">High school</span>
+        <div>
+          <h3>The first machines that made their own decisions</h3>
+          <p>Arduino changed everything: suddenly my projects could sense and react. I built an irrigation system that read temperature, light and soil moisture and ran a motor to water the plants on its own, and a three-wheeled line-following car.</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage">UC Santa Cruz</span>
+        <div>
+          <h3>Mechatronics clicked</h3>
+          <p>In college I noticed that the projects I couldn't put down all lived where mechanics, electronics and code meet. That place has a name, so I made it my major.</p>
+        </div>
+      </li>
+      <li class="now">
+        <span class="stage">Now</span>
+        <div>
+          <h3>Teaching a robot to see</h3>
+          <p>On my capstone I built the power system and joint control, but the arm never ran end to end because the vision software stalled, and I didn't know enough to help. So I'm building a robot where I write every layer, from the power board to object detection. The long-term goal is a home robot. I do most of the cooking and chores at home, and I already know which ones it gets first.</p>
+        </div>
       </li>
     </ol>
   </div>
