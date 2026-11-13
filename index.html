@@ -67,8 +67,6 @@ p{margin:0}
 .btn{display:inline-block;padding:11px 18px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--probe)}
 .btn.primary{background:var(--probe);color:var(--paper)}
 .btn.ghost{color:var(--probe)}
-button.btn{font-family:var(--body);cursor:pointer;background:transparent;line-height:inherit}
-button.btn.primary{background:var(--probe)}
 
 .tree{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px 18px 14px}
 .tree svg{display:block;width:100%;height:auto}
@@ -221,7 +219,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
       </dl>
       <div class="actions">
         <a class="btn primary" href="#projects">See my projects</a>
-        <button class="btn ghost copy-mail" type="button" data-label="Copy my email">Copy my email</button>
+        <a class="btn ghost" href="mailto:winbondzhang@gmail.com">Email me</a>
       </div>
     </div>
 
@@ -520,8 +518,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
     <h2>Let's talk robots.</h2>
     <div>
       <p>I'm applying to master's programs in robotics and happy to share more detail, schematics or videos of any project here.</p>
-      <p class="mail">winbondzhang@gmail.com</p>
-      <div class="actions"><button class="btn primary copy-mail" type="button" data-label="Copy email">Copy email</button><a class="btn ghost" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=winbondzhang@gmail.com" target="_blank" rel="noopener">Write in Gmail</a></div>
+      <p class="mail"><a href="mailto:winbondzhang@gmail.com">winbondzhang@gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -567,17 +564,6 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
   lb.addEventListener('click', function(e){ if (e.target === lb) shut(); });
   lb.addEventListener('close', function(){ body.innerHTML = ''; });
 })();
-</script>
-<script>
-document.querySelectorAll('.copy-mail').forEach(function(b){
-  b.addEventListener('click', function(){
-    var addr='winbondzhang@gmail.com', label=b.dataset.label;
-    function done(t){ b.textContent=t; setTimeout(function(){ b.textContent=label; }, 2500); }
-    try {
-      navigator.clipboard.writeText(addr).then(function(){ done('Copied: '+addr); }, function(){ done(addr); });
-    } catch(e) { done(addr); }
-  });
-});
 </script>
 </body>
 </html>
