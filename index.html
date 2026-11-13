@@ -412,19 +412,31 @@ footer{border-top:1px solid var(--rule);padding:20px 0;font-size:14px;color:var(
           <h4>What I did</h4>
           <ul>
             <li>Designed every mechanical part in Onshape: belt chassis, load-cell weighing station, servo pusher arm, swappable sorting slots, and a roller mount with adjustable belt tension.</li>
-            <li>Fabricated all of it with FDM 3D printing.</li>
+            <li>Built it from laser-cut plywood with finger joints and FDM 3D-printed parts.</li>
             <li>Added sensor-gated flow control: the next package is weighed and released only after the beam-breaks confirm the belt is clear.</li>
           </ul>
           <p class="bug"><b>Hardest problem</b>Packages were landing in the wrong weight class depending on how they were placed. Dropped light ones read heavy, and slowly released heavy ones read light. A settling delay before sampling the load cell fixed it.</p>
         </div>
         <aside class="p-side">
-          <figure class="media"><figcaption>Video: the conveyor sorting a mixed batch</figcaption></figure>
           <h4>Measured</h4>
           <dl class="specs">
             <dt>100 %</dt><dd>sorting accuracy across 6 categories</dd>
             <dt>15–18 / min</dt><dd>throughput, 2.5–3× the required 6 per minute</dd>
           </dl>
         </aside>
+      </div>
+      <div class="strip" aria-label="Photos, CAD and video of the sorting conveyor">
+        <figure class="wide" style="--r:1.7778"><button class="open" type="button" data-type="video" data-src="media/conveyor-demo.mp4" data-cap="Sorting a mixed batch of packages"><img src="media/conveyor-demo-poster.jpg" alt="" loading="lazy"><span class="play">0:32</span><span class="cap">Sorting a mixed batch</span></button></figure>
+        <figure class="wide" style="--r:1.7525"><button class="open" type="button" data-type="img" data-src="media/conveyor-system.jpg" data-cap="Finished system with sorted packages"><img src="media/conveyor-system.jpg" alt="The finished conveyor with the weighing tower on the left, a printed fabric belt, servo pushers and six color-coded bins with sorted cubes in front" loading="lazy"><span class="cap">Finished system with sorted packages</span></button></figure>
+      </div>
+      <div class="strip">
+        <figure class="wide" style="--r:2.2409"><button class="open" type="button" data-type="img" data-src="media/conveyor-cad-full.jpg" data-cap="Full CAD assembly in Onshape"><img src="media/conveyor-cad-full.jpg" alt="Onshape CAD of the full system: the weigh-and-color tower beside the belt chassis with six bins" loading="lazy"><span class="cap">Full CAD assembly in Onshape</span></button></figure>
+        <figure style="--r:.6462"><button class="open" type="button" data-type="img" data-src="media/conveyor-cad-station.jpg" data-cap="Weigh-and-color station, CAD"><img src="media/conveyor-cad-station.jpg" alt="CAD of the station: load cell under a platform, color sensor and a servo release arm in a finger-jointed box" loading="lazy"><span class="cap">Weigh-and-color station, CAD</span></button></figure>
+        <figure style="--r:.75"><button class="open" type="button" data-type="img" data-src="media/conveyor-station.jpg" data-cap="The same station, built"><img src="media/conveyor-station.jpg" alt="The built station in laser-cut plywood with a 20 kg load cell, DFRobot color sensor and printed release arm" loading="lazy"><span class="cap">The same station, built</span></button></figure>
+      </div>
+      <div class="strip">
+        <figure class="wide" style="--r:1.6293"><button class="open" type="button" data-type="img" data-src="media/conveyor-cad-chassis.jpg" data-cap="Belt chassis with 3 servo pushers, CAD"><img src="media/conveyor-cad-chassis.jpg" alt="CAD of the belt chassis with three servo pusher arms and six heavy/light bins" loading="lazy"><span class="cap">Belt chassis with 3 servo pushers, CAD</span></button></figure>
+        <figure class="wide" style="--r:2.0566"><button class="open" type="button" data-type="img" data-src="media/conveyor-belt.jpg" data-cap="The chassis, built, with swappable bins"><img src="media/conveyor-belt.jpg" alt="The built conveyor with a fabric belt, three servo pushers and six color-coded swappable bins marked H and L" loading="lazy"><span class="cap">The chassis, built, with swappable bins</span></button></figure>
       </div>
     </article>
   </div>
